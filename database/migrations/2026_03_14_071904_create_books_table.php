@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('publisher')->nullable();
             $table->year('year')->nullable();
             $table->integer('stock')->default(0);
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

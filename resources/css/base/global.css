@@ -1,4 +1,10 @@
 body{
     font-family: var(--font-family);
+    background-color: var(--neutral-800);
+    color: var(--neutral-50);
     width: 100%;
+}
+
+a{
+    text-decoration: none;
 }

@@ -21,6 +21,11 @@ class Book extends Model
         return $this->belongsToMany(Category::class);
     }
 
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class);
+    }
+
     public function borrowDetails()
     {
         return $this->hasMany(BorrowDetail::class);

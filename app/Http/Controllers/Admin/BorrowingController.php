@@ -10,11 +10,11 @@ class BorrowingController extends Controller
 {
     //
 
-    public function index()
+    public function borrows()
     {
         $borrowings = Borrowing::with('user', 'details.book')->latest()->get();
 
-        return view('admin.borrowings.index', compact('borrowings'));
+        return view('admin.borrowings.borrowings', compact('borrowings'));
     }
 
     public function detail($id)

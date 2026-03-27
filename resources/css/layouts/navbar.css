@@ -1,5 +1,46 @@
-.navbar{
-    padding: var(--space-3);
-    background-color: ;
-    color: ;
+.navbar {
+    padding: 0px var(--space-3);
+    background-color: var(--neutral-900);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    box-shadow: var(--shadow-xs);
+}
+
+.navbar .menu {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.navbar .nav-link{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar .title{
+    margin-right: var(--space-4);
+}
+
+.navbar a{
+    display: inline-block;
+    padding: var(--space-3) var(--space-2);
+    background-color: rgba(255, 255, 255, 0);
+    border-bottom: 4px solid rgba(0, 0, 255, 0);
+}
+
+.navbar a:hover,
+.navbar a.active{
+    background-color: var(--neutral-800);
+    border-bottom: 4px solid var(--color-primary);
+}
+
+.navbar .profile{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: var(--space-3);
 }

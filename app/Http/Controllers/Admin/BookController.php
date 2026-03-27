@@ -11,24 +11,38 @@ class BookController extends Controller
 {
     //
 
-    public function index()
+    public function books()
     {
         $books = Book::with('categories')->latest()->get();
-        return view('admin.books.index', compact('books'));
+        return view('admin.books.books', compact('books'));
     }
 
-    public function create()
+    public function addBook()
     {
         $categories = Category::latest()->get();
-        return view('admin.books.create', compact('categories'));
+        return view('admin.books.add', compact('categories'));
     }
 
     public function store(Request $request)
     {
-        $book = Book::create($request->all());
-        $book->categories()->sync($request->category_id);
+        $validate = $request->validate([
+            'title' => 'required|string',
+            'author' => 'required|string',
+            'publisher' => 'required|string',
+            'year' => 'required|digits:4|integer|min:1900|max:' . date('Y'),
+            'stock' => 'required|integer|min:0',
+            'description' => 'nullable|string',
 
-        return redirect()->route('admin.books.index');
+            'categories' => 'required|array',
+            'categories.*' => 'exists:categories,id'
+        ]);
+
+        $book = Book::create($validate);
+
+        $book->categories()->attach($validate['categories']);
+        // $book->categories()->sync($request->category_id);
+
+        return redirect()->route('admin.books')->with('success', 'success added books');
     }
 
     public function detail($id)
@@ -49,14 +63,14 @@ class BookController extends Controller
     {
         $book = Book::findOrFail($id);
         $book->update($request->all());
-        $book->categories()->sync($request->category_id);
+        $book->categories()->sync($request->categories);
 
-        return redirect()->route('admin.books.index');
+        return redirect()->route('admin.books');
     }
 
     public function delete($id)
     {
         Book::destroy($id);
-        return redirect()->route('admin.books.index');
+        return redirect()->route('admin.books');
     }
 }

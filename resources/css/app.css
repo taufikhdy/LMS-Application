@@ -1,5 +1,28 @@
 @import 'tailwindcss';
 
+/* CSS */
+/* BASE */
+@import './base/global.css';
+@import './base/reset.css';
+@import './base/variables.css';
+
+/* COMPONENTS */
+@import './components/input.css';
+@import './components/button.css';
+@import './components/box.css';
+
+/* UTILITIES */
+@import './utilities/grid.css';
+@import './utilities/flex.css';
+@import './utilities/size.css';
+@import './utilities/margin.css';
+@import './utilities/padding.css';
+@import './utilities/color.css';
+@import './utilities/position.css';
+
+/* LAYOUTS */
+@import './layouts/navbar.css';
+
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';

@@ -53,6 +53,11 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+    public function cart()
+    {
+        return $this->hasOne(Cart::class);
+    }
+
     public function borrowings()
     {
         return $this->hasMany(Borrowing::class);

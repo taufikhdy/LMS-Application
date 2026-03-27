@@ -1,0 +1,23 @@
+.relative{
+    position: relative;
+}
+
+.fixed{
+    position: fixed;
+}
+
+.absolute{
+    position: absolute;
+}
+
+.static{
+    position: static;
+}
+
+.sticky{
+    position: sticky;
+}
+
+.z-inherit{
+    z-index: inherit;
+}

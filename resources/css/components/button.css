@@ -1,0 +1,13 @@
+button{
+    background: none;
+    border: none;
+    outline: none;
+
+    cursor: pointer;
+}
+
+.btn-primary{
+    background: var(--color-primary);
+    padding: var(--space-2);
+    color: var(--neutral-900);
+}

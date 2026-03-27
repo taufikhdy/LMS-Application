@@ -1,0 +1,12 @@
+.grid{
+    display: grid;
+    justify-content: center;
+}
+
+.grid-col-6{
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.grid-col-8{
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}

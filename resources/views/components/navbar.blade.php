@@ -1,21 +1,24 @@
 <nav class="navbar">
     <div class="menu">
-        <div class="title">Lam's</div>
-        <div class="nav-link">
-            @if (Auth::user()->role->name === 'admin')
-            <a href="{{ route('admin.dashboard') }}" class="{{Route::is('admin.dashboard') ? 'active' : ''}}">Dashboard</a>
-            <a href="{{ route('admin.borrows') }}" class="{{Route::is('admin.borrows') ? 'active' : ''}}">Peminjaman</a>
-            <a href="{{ route('admin.books') }}" class="{{Route::is('admin.books') ? 'active' : ''}}">Buku</a>
-            <a href="{{ route('admin.categories') }}" class="{{Route::is('admin.categories') ? 'active' : ''}}">Kategori</a>
-            <a href="{{ route('admin.users') }}" class="{{Route::is('admin.users') ? 'active' : ''}}">Pengguna</a>
-            @elseif (Auth::user()->role->name === 'user')
-            <a href="{{ route('user.dashboard') }}" class="{{Route::is('user.dashboard') ? 'active' : ''}}">Dashboard</a>
-            {{-- <a href="{{ route('user.borrows') }}" class="{{Route::is('user.borrows') ? 'active' : ''}}">Peminjaman</a>
-            <a href="{{ route('user.books') }}" class="{{Route::is('user.books') ? 'active' : ''}}">Buku</a>
-            <a href="{{ route('user.categories') }}" class="{{Route::is('user.categories') ? 'active' : ''}}">Kategori</a> --}}
-            <a href="{{ route('user.cart') }}" class="{{Route::is('user.users') ? 'active' : ''}}">Keranjang</a>
-            @endif
-        </div>
+        @if (Auth::user()->role->name === 'admin')
+            <a href="{{route('admin.dashboard')}}" class="title">Lam's</a>
+            <div class="nav-link">
+                <a href="{{ route('admin.dashboard') }}" class="{{Route::is('admin.dashboard') ? 'active' : ''}}">Dashboard</a>
+                <a href="{{ route('admin.borrows') }}" class="{{Route::is('admin.borrows') ? 'active' : ''}}">Peminjaman</a>
+                <a href="{{ route('admin.books') }}" class="{{Route::is('admin.books') ? 'active' : ''}}">Buku</a>
+                <a href="{{ route('admin.categories') }}" class="{{Route::is('admin.categories') ? 'active' : ''}}">Kategori</a>
+                <a href="{{ route('admin.users') }}" class="{{Route::is('admin.users') ? 'active' : ''}}">Pengguna</a>
+
+        @elseif (Auth::user()->role->name === 'user')
+                <a href="{{route('admin.dashboard')}}" class="title">Lam's</a>
+            <div class="nav-link">
+                <a href="{{ route('user.dashboard') }}" class="{{Route::is('user.dashboard') ? 'active' : ''}}">Dashboard</a>
+                <a href="{{ route('user.borrows') }}" class="{{Route::is('user.borrows') ? 'active' : ''}}">Peminjaman</a>
+                {{-- <a href="{{ route('user.books') }}" class="{{Route::is('user.books') ? 'active' : ''}}">Buku</a> --}}
+                {{-- <a href="{{ route('user.categories') }}" class="{{Route::is('user.categories') ? 'active' : ''}}">Kategori</a> --}}
+                <a href="{{ route('user.cart') }}" class="{{Route::is('user.cart') ? 'active' : ''}}">Keranjang</a>
+                @endif
+            </div>
     </div>
 
     <div class="profile">

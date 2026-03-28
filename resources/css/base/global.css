@@ -3,6 +3,9 @@ body{
     background-color: var(--neutral-800);
     color: var(--neutral-50);
     width: 100%;
+    min-height: 100vh;
+    position: relative;
+    z-index: 1;
 }
 
 a{

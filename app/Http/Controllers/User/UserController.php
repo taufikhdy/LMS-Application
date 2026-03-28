@@ -25,10 +25,9 @@ class UserController extends Controller
 
     public function cart()
     {
-        $cart = Cart::where('user_id', Auth::user()->id)->first();
-        $cartItems = CartItem::where('cart_id', $cart->id)->with('book')->latest()->get();
+        $cart = Cart::with('items.book')->firstOrCreate(['user_id' => Auth::id()]);
 
-        return view('user.carts.carts', compact('cartItems'));
+        return view('user.carts.carts', compact('cart'));
     }
 
     public function addToCart($book_id)

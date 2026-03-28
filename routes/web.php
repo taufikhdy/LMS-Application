@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\User\UserBorrowingController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -58,7 +59,9 @@ Route::middleware(['auth', 'multirole:admin'])->group(function () {
     });
 
     Route::controller(BorrowingController::class)->group(function () {
-        Route::get('/borrows', 'borrows')->name('admin.borrows');
+        Route::get('/a/borrows', 'adminBorrows')->name('admin.borrows');
+        Route::put('/a/borrows/{id}/confirm', 'confirm')->name('admin.borrowings.confirm');
+        Route::put('/a/borrowed/{id}/returned', 'returnBook')->name('admin.borrowings.returned');
     });
 });
 
@@ -73,6 +76,10 @@ Route::middleware(['auth', 'multirole:user'])->group(function () {
 
         Route::get('/cart', 'cart')->name('user.cart');
         Route::delete('/cart/{id}/remove', 'removeCartItem')->name('user.cartRemove');
+    });
 
+    Route::controller(UserBorrowingController::class)->group(function () {
+        Route::get('/u/borrows', 'borrows')->name('user.borrows');
+        Route::post('/borrows/store', 'borrowStore')->name('user.borrowStore');
     });
 });

@@ -6,48 +6,68 @@ use App\Http\Controllers\Controller;
 use App\Models\Book;
 use App\Models\BorrowDetail;
 use App\Models\Borrowing;
+use App\Models\CartItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserBorrowingController extends Controller
 {
-    //
-
-    public function index()
+    public function borrows()
     {
-        $books = Book::where('stock', '>', 0)->latest()->get();
-        return view('user.books.index', compact('books'));
+        $borrowings = Borrowing::with('details.book')
+            ->where('user_id', Auth::user()->id)
+            ->latest()
+            ->get();
+
+        return view('user.borrowings.borrowings', compact('borrowings'));
     }
 
     public function borrowStore(Request $request)
     {
-        $borrowing = Borrowing::create([
-            'user_id' => Auth::user()->id,
-            'borrow_date' => now(),
-            'status' => 'borrowed'
+        // validasi
+        $request->validate([
+            'books' => 'required|array'
         ]);
 
-        foreach($request->book_ids as $bookId){
-            $book = Book::findOrFail($bookId);
+        // max 3 buku
+        if (count($request->books) > 3) {
+            return back()->with('error', 'Maksimal 3 buku');
+        }
 
-            if($book->stock <= 0){
-                return redirect()->back()->with('error', 'Stock Tidak Tersedia');
-            }
+        DB::transaction(function () use ($request) {
 
-            BorrowDetail::create([
-                'borrowing_id' => $borrowing->id,
-                'book_id' => $bookId
+            $borrowing = Borrowing::create([
+                'user_id' => Auth::user()->id,
+                'borrow_date' => now(),
+                'due_date' => now(),
+                'status' => 'pending'
             ]);
 
-            $book->decrement('stock');
+            // ambil buku
+            $books = Book::whereIn('id', $request->books)->get();
 
-            return redirect()->route('user.history');
-        }
-    }
+            foreach ($books as $book) {
 
-    public function history()
-    {
-        $borrowings = Borrowing::where('user_id', Auth::user()->id)->with('deatils.book')->latest()->get();
-        return view('user.history', compact('borrowings'));
+                // validasi stok
+                if ($book->stock <= 0) {
+                    throw new \Exception('Stok habis');
+                }
+
+                $borrowing->details()->create([
+                    'book_id' => $book->id
+                ]);
+            }
+
+            // hapus dari cart
+            CartItem::whereIn('book_id', $request->books)
+                ->whereHas('cart', function ($q) {
+                    $q->where('user_id', Auth::user()->id);
+                })
+                ->delete();
+        });
+
+        return redirect()->route('user.borrows')
+            ->with('success', 'Pengajuan berhasil');
     }
 }

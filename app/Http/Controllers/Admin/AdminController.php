@@ -10,7 +10,7 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        $books = Book::latest()->get();
+        $books = Book::with('categories')->latest()->get();
         return view('admin.dashboard', compact('books'));
     }
 }

@@ -22,6 +22,10 @@
     min-height: 50vh;
 }
 
+.min-vh-100{
+    min-height: 100vh;
+}
+
 .vh-25 {
     height: 25vh;
 }
@@ -36,4 +40,12 @@
 
 .min-vh-20{
     min-height: 20vh;
+}
+
+.vh-15 {
+    height: 15vh;
+}
+
+.min-vh-15{
+    min-height: 15vh;
 }

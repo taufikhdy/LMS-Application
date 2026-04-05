@@ -10,6 +10,7 @@
 @import './components/input.css';
 @import './components/button.css';
 @import './components/box.css';
+@import './components/table.css';
 
 /* UTILITIES */
 @import './utilities/grid.css';
@@ -19,6 +20,9 @@
 @import './utilities/padding.css';
 @import './utilities/color.css';
 @import './utilities/position.css';
+@import './utilities/radius.css';
+@import './utilities/shadow.css';
+@import './utilities/text.css';
 
 /* LAYOUTS */
 @import './layouts/navbar.css';

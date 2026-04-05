@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Book;
+use App\Models\Borrowing;
 use App\Models\Cart;
 use App\Models\CartItem;
 use Illuminate\Http\Request;
@@ -14,7 +15,8 @@ class UserController extends Controller
     public function dashboard()
     {
         $books = Book::latest()->get();
-        return view('user.dashboard', compact('books'));
+        $borrowings = Borrowing::with('details.book')->where('user_id', Auth::user()->id)->where('status', 'borrowed')->latest()->get();
+        return view('user.dashboard', compact('books', 'borrowings'));
     }
 
     public function bookDetail($id)

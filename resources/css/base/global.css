@@ -1,6 +1,6 @@
 body{
     font-family: var(--font-family);
-    background-color: var(--neutral-800);
+    background-color: var(--neutral-900);
     color: var(--neutral-50);
     width: 100%;
     min-height: 100vh;
@@ -8,6 +8,16 @@ body{
     z-index: 1;
 }
 
+main{
+    padding: var(--space-6);
+}
+
 a{
     text-decoration: none;
+}
+
+button{
+    outline: none;
+    background: none;
+    border: none;
 }

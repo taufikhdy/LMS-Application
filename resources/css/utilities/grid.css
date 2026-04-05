@@ -3,6 +3,10 @@
     justify-content: center;
 }
 
+.grid-col-2{
+    grid-template-columns: 1fr 1fr;
+}
+
 .grid-col-6{
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }

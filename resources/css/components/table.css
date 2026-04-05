@@ -1,0 +1,52 @@
+.table-container {
+    background-color: var(--neutral-900);
+}
+
+.table-container table {
+    text-align: center;
+}
+
+.table-container table th,
+.table-container table td {
+    border: 1px solid var(--neutral-600);
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    padding: var(--space-2) var(--space-3);
+}
+
+.table-container table tr:has(td):hover{
+    background-color: var(--neutral-800);
+}
+
+/* TABLE 2 */
+
+.table-container-2 {
+    background-color: var(--neutral-900);
+}
+
+.table-container-2 table {
+    text-align: center;
+}
+
+.table-container-2 table th{
+    color: var(--neutral-600);
+}
+
+.table-container-2 table th,
+.table-container-2 table td {
+    border: 1.4px solid var(--neutral-800);
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    padding: var(--space-2) var(--space-3);
+}
+
+.table-container-2 table td{
+    padding: var(--space-3);
+}
+
+.table-container-2 table tr:has(td):hover{
+    background-color: var(--neutral-800);
+}
+

@@ -25,7 +25,7 @@
         <span class="name">{{ Auth::user()->name }}</span>
         <form action="{{ route('logout') }}" method="post">
             @csrf
-            <input type="submit" value="Logout">
+            <button type="submit" class="text-md" onclick="return confirm('Yakin ingin keluar dari akun ini')"><i class="ri-logout-box-r-line"></i>Logout</button>
         </form>
     </div>
 </nav>

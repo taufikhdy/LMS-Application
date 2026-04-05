@@ -24,7 +24,7 @@
 
     </header>
 
-    <main>
+    <section>
 
         <form action="{{ route('user.borrowStore') }}" method="post">
             @csrf

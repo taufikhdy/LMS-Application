@@ -63,7 +63,7 @@
     /* SHADOW */
 
     --shadow-xs: 0 0px 6px rgba(0, 0, 0, 0.05);
-    --shadow-sm: 0 0px 6px rgba(0, 0, 0, 0.2);
+    --shadow-sm: 0 0px 8px rgba(0, 0, 0, 0.2);
     --shadow-md: 0 2px 10px rgba(0, 0, 0, 1);
 
 
@@ -86,4 +86,5 @@
     --text-md: 16px;
     --text-lg: 20px;
     --text-xl: 24px;
+    --text-xxl: 32px;
 }

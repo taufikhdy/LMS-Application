@@ -1,0 +1,7 @@
+.shadow-xs{
+    box-shadow: var(--shadow-xs);
+}
+
+.shadow-sm{
+    box-shadow: var(--shadow-sm);
+}

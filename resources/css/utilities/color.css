@@ -1,3 +1,47 @@
 .bg-neutral-900{
     background: var(--neutral-900);
 }
+
+.bg-neutral-800{
+    background: var(--neutral-800);
+}
+
+.color-primary{
+    color: var(--color-primary);
+}
+
+.color-secondary{
+    color: var(--color-secondary);
+}
+
+.color-triary{
+    color: var(--color-triary);
+}
+
+.color-warning{
+    color: var(--warning-500);
+}
+
+.color-error{
+    color: var(--error-500);
+}
+
+.color-900{
+    color: var(--neutral-900);
+}
+
+.color-800{
+    color: var(--neutral-800);
+}
+
+.color-700{
+    color: var(--neutral-700);
+}
+
+.color-600{
+    color: var(--neutral-600);
+}
+
+.color-500{
+    color: var(--neutral-500);
+}

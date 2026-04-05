@@ -33,6 +33,7 @@ Route::middleware(['auth', 'multirole:admin'])->group(function () {
 
     Route::controller(BookController::class)->group(function () {
         Route::get('/book', 'books')->name('admin.books');
+        Route::get('/book/a/{id}/detail', 'detail')->name('admin.detailBook');
         Route::get('/book/form/add', 'addBook')->name('admin.addBook');
         Route::post('/book/form/post', 'store')->name('admin.storeBook');
         Route::get('/book/{id}/form/edit', 'edit')->name('admin.editBook');
@@ -71,7 +72,7 @@ Route::middleware(['auth', 'multirole:user'])->group(function () {
     Route::controller(UserController::class)->group(function () {
         Route::get('/u/dashboard', 'dashboard')->name('user.dashboard');
 
-        Route::get('/book/{id}/detail', 'bookDetail')->name('user.bookDetail');
+        Route::get('/book/u/{id}/detail', 'bookDetail')->name('user.bookDetail');
         Route::get('/book/{id}/addToCart', 'addToCart')->name('user.addToCart');
 
         Route::get('/cart', 'cart')->name('user.cart');

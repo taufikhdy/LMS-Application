@@ -14,9 +14,10 @@ class BorrowingController extends Controller
 
     public function adminBorrows()
     {
-        $borrowings = Borrowing::with('user', 'details.book')->latest()->get();
+        $borrowings = Borrowing::with('user', 'details.book')->where('status', 'pending')->latest()->get();
+        $returning = Borrowing::with('user', 'details.book')->where('status', 'borrowed')->latest()->get();
 
-        return view('admin.borrowings.borrowings', compact('borrowings'));
+        return view('admin.borrowings.borrowings', compact('borrowings', 'returning'));
     }
 
     public function detail($id)

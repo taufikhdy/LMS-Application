@@ -7,6 +7,10 @@
     width: 100%;
 
     box-shadow: var(--shadow-xs);
+
+    position: sticky;
+    top: 0;
+    z-index: inherit;
 }
 
 .navbar .menu {

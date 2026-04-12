@@ -1,33 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
+@section('title', 'LMS User Form')
 
-<body>
-    <form action="{{ route('admin.updateUser', $user->id) }}" method="post">
-        @csrf
-        @method('PUT')
+@section('content')
 
-        <input type="text" name="name" id="" placeholder="Name" value="{{$user->name}}">
+    <main>
+        <div class="flex justify-center p-6">
+            <div class="input-layer shadow-xs p-4">
 
-        <input type="email" name="email" id="" placeholder="Email" value="{{$user->email}}">
+                <form action="{{ route('admin.updateUser', $user->id) }}" method="post">
+                    @csrf
+                    @method('PUT')
 
-        <select name="role_id" id="">
-            <option value="{{$user->role->id}}">{{$user->role->name}}</option>
-            @foreach ($roles as $role)
-                <option value="{{ $role->id }}">{{ $role->name }}</option>
-            @endforeach
-        </select>
+                    <div class="text-xl text-bold text-center pt-3 pb-5">Edit Data "{{ $user->name }}"</div>
 
-        {{-- <input type="text" name="password" id="" placeholder="Password"> --}}
+                    <div class="flex align-center gap-2">
+                        <div class="w-100">
+                            <label for="name">Name</label>
+                            <input type="text" name="name" id="" placeholder="Name"
+                                value="{{ $user->name }}">
+                        </div>
 
-        <input type="submit" value="Edit">
-    </form>
-</body>
+                        <div class="w-100">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="" placeholder="Email"
+                                value="{{ $user->email }}">
+                        </div>
+                    </div>
 
-</html>
+                    <div class="w-50">
+                        <label for="role">Role</label>
+                        <select name="role_id">
+                            @foreach ($roles as $role)
+                                <option value="{{ $role->id }}" {{ $user->role_id == $role->id ? 'selected' : '' }}>
+                                    {{ $role->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-warning w-100 radius-sm"><i class="ri-pen-line"></i> Edit</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+@endsection

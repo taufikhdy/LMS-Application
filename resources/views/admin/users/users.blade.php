@@ -15,7 +15,7 @@
                         <button type="submit" class="btn-primary w-max">Cari</button>
                     </div>
 
-                    <a href="{{ route('admin.addBook') }}" class="btn-primary radius-sm w-100"><i class="ri-add-fill"></i>
+                    <a href="{{ route('admin.addUser') }}" class="btn-primary radius-sm w-100"><i class="ri-add-fill"></i>
                         Tambah</a>
                 </div>
             </div>

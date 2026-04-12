@@ -32,7 +32,6 @@
                         <th>Penerbit</th>
                         <th>Tahun</th>
                         <th>Stok</th>
-                        <th>Deskripsi</th>
                         <th>Menu</th>
                     </tr>
 
@@ -53,9 +52,9 @@
                             <td>{{ $book->publisher }}</td>
                             <td>{{ $book->year }}</td>
                             <td>{{ $book->stock }}</td>
-                            <td>{{ $book->description }}</td>
                             <td>
                                 <div class="flex justify-center align-center gap-4">
+                                    <a href="{{route('admin.detailBook', $book->id)}}"><i class="ri-eye-line text-lg color-primary"></i></a>
                                     <a href="{{ route('admin.editBook', $book->id) }}"><i
                                             class="ri-edit-line text-lg color-warning"></i></a>
                                     <form action="{{ route('admin.deleteBook', $book->id) }}" method="post">

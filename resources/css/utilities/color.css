@@ -19,11 +19,15 @@
 }
 
 .color-warning{
-    color: var(--warning-500);
+    color: var(--warning-400);
 }
 
 .color-error{
     color: var(--error-500);
+}
+
+.color-success{
+    color: var(--success-500);
 }
 
 .color-900{

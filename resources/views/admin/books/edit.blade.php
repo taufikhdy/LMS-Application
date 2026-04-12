@@ -1,40 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
+@section('title', 'LMS Book Edit')
 
-<body>
-    <form action="{{ route('admin.updateBook', $book->id) }}" method="post">
-        @csrf
-        @method('PUT')
+@section('content')
+    <main>
+        <div class="flex justify-center p-6">
+            <div class="input-layer shadow-xs p-4">
+                <form action="{{ route('admin.updateBook', $book->id) }}" method="post">
+                    @csrf
+                    @method('PUT')
 
-        <input type="text" name="title" id="" placeholder="Title" value="{{ $book->title }}">
+                    <div class="text-xl text-bold text-center p-6">Edit Buku "{{ $book->title }}"</div>
 
-        <select name="categories[]" id="" multiple>
-            @foreach ($categories as $category)
-                <option value="{{ $category->id }}" {{ $book->categories->contains($category->id) ? 'selected' : '' }}>
-                    {{ $category->name }}</option>
-            @endforeach
-        </select>
 
-        <input type="text" name="author" id="" placeholder="Author" value="{{ $book->author }}">
+                    <label for="title">Judul Buku</label>
+                    <input type="text" name="title" id="" placeholder="Title" value="{{ $book->title }}">
 
-        <input type="text" name="publisher" id="" placeholder="Publisher" value="{{ $book->publisher }}">
+                    <label for="category">Kategori Buku</label>
+                    <select name="categories[]" id="" multiple>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}"
+                                {{ $book->categories->contains($category->id) ? 'selected' : '' }}>
+                                {{ $category->name }}</option>
+                        @endforeach
+                    </select>
 
-        <input type="text" name="year" id="" placeholder="Year" value="{{ $book->year }}">
+                    <label for="author">Penulis</label>
+                    <input type="text" name="author" id="" placeholder="Author" value="{{ $book->author }}">
 
-        <input type="text" name="stock" id="" placeholder="Stock" value="0"
-            value="{{ $book->stock }}">
+                    <label for="publisher">Penerbit</label>
+                    <input type="text" name="publisher" id="" placeholder="Publisher"
+                        value="{{ $book->publisher }}">
 
-        <textarea name="description" id="" cols="30" rows="10" placeholder="Description">{{ $book->description }}</textarea>
+                    <label for="year">Tahun Terbit</label>
+                    <input type="text" name="year" id="" placeholder="Year" value="{{ $book->year }}">
 
-        <input type="submit" value="Edit">
-    </form>
-</body>
+                    <label for="stock">Stok</label>
+                    <input type="text" name="stock" id="" placeholder="Stock"
+                        value="{{ $book->stock }}">
 
-</html>
+                    <label for="desc">Deskripsi</label>
+                    <textarea name="description" id="" cols="30" rows="10" placeholder="Description">{{ $book->description }}</textarea>
+
+                    <button type="submit" class="btn-warning w-100 radius-sm"><i class="ri-edit-line"></i> Edit</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+@endsection

@@ -12,9 +12,9 @@
         @elseif (Auth::user()->role->name === 'user')
                 <a href="{{route('admin.dashboard')}}" class="title">Lam's</a>
             <div class="nav-link">
-                <a href="{{ route('user.dashboard') }}" class="{{Route::is('user.dashboard') ? 'active' : ''}}">Dashboard</a>
+                <a href="{{ route('user.dashboard') }}" class="{{Route::is('user.dashboard') ? 'active' : ''}}">Home</a>
                 <a href="{{ route('user.borrows') }}" class="{{Route::is('user.borrows') ? 'active' : ''}}">Peminjaman</a>
-                {{-- <a href="{{ route('user.books') }}" class="{{Route::is('user.books') ? 'active' : ''}}">Buku</a> --}}
+                <a href="{{ route('user.books') }}" class="{{Route::is('user.books') ? 'active' : ''}}">Buku</a>
                 {{-- <a href="{{ route('user.categories') }}" class="{{Route::is('user.categories') ? 'active' : ''}}">Kategori</a> --}}
                 <a href="{{ route('user.cart') }}" class="{{Route::is('user.cart') ? 'active' : ''}}">Keranjang</a>
                 @endif

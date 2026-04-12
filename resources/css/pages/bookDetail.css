@@ -1,0 +1,10 @@
+.book-detail{
+    display: grid;
+    grid-template-columns: max-content auto;
+    gap: var(--space-6);
+}
+
+.book-detail img{
+    min-width: 300px;
+    height: 100%;
+}

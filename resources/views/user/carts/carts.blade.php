@@ -3,62 +3,44 @@
 @section('title', "Lam's Dashboard")
 
 @section('content')
+    <main>
+        <h1 class="text-xxl text-bold mb-4">Keranjang</h1>
 
-    <header class="flex justify-center align-center w-100 min-vh-20">
+        @if ($cart->items->isEmpty())
+            <span class="block p-4 text-center color-500">Anda belum menambahkan <a href="{{route('user.books')}}" class="color-primary">buku</a></span>
+        @else
+            <form action="{{ route('user.borrowStore') }}" method="post">
+                @csrf
 
-        <form action="" method="post">
-            @csrf
 
-            <div class="flex justify-center align-center gap-4">
-                <div class="flex align-center w-100">
-                    <input type="text" name="search" id="" placeholder="Cari" class="input-search w-100">
-                    <button type="submit" class="btn-primary w-max">Cari</button>
-                </div>
-
-                <select name="filter" id="" class="select-search">
-                    <option value="filter" class="option-search">Filter</option>
-                    <option value="filter" class="option-search">Filter</option>
-                </select>
-            </div>
-        </form>
-
-    </header>
-
-    <section>
-
-        <form action="{{ route('user.borrowStore') }}" method="post">
-            @csrf
-
-            <div class="p-4">
                 <div class="grid grid-col-6 gap-4 w-100">
                     @foreach ($cart->items as $i)
-                        <div class="box-item">
+                        <div class="box-item shadow-xs">
                             <a href="{{ route('user.bookDetail', $i->book->id) }}">
                                 <img src="" alt="" class="thumbnail">
                                 <div class="info">
                                     <div class="title">{{ $i->book->title }}</div>
                                     <div class="author">{{ $i->book->author }}</div>
                                     <div class="rating"></div>
+                                </div>
                             </a>
-                            {{-- <form action="{{ route('user.cartRemove', $i->id) }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn-primary">Hapus</button>
-                            </form> --}}
 
-                            <input type="checkbox" name="books[]" id="" value="{{ $i->book->id }}">
+                            <div class="info">
+                                <input type="checkbox" name="books[]" id="" value="{{ $i->book->id }}">
+                            </div>
                         </div>
                     @endforeach
                 </div>
-            </div>
-            </div>
+                </div>
+                </div>
 
-            <button type="submit">Pinjam</button>
+                <div class="bg-neutral-900 shadow-xs w-100 p-3 absolute z-inherit text-right" style="bottom: 0; left: 0;">
+                    <button type="submit" class="btn-primary w-50 text-bold">Pinjam</button>
+                </div>
 
-        </form>
+            </form>
+        @endif
 
     </main>
-
-
 
 @endsection

@@ -1,0 +1,13 @@
+.label-primary{
+    background-color: var(--color-primary);
+    color: var(--neutral-900);
+    padding: var(--space-1);
+    font-size: var(--text-xs);
+}
+
+.label-neutral{
+    background-color: var(--neutral-900);
+    color: var(--color-primary);
+    padding: var(--space-1);
+    font-size: var(--text-xs);
+}

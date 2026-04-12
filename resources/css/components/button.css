@@ -11,3 +11,23 @@ button{
     padding: var(--space-2);
     color: var(--neutral-900);
 }
+
+.btn-warning{
+    background: var(--warning-400);
+    padding: var(--space-2);
+    color: var(--neutral-900);
+}
+
+.btn-error{
+    background: var(--error-500);
+    padding: var(--space-2);
+    color: var(--neutral-900);
+}
+
+.btn-success{
+    background: var(--success-500);
+    padding: var(--space-2);
+    color: var(--neutral-900);
+}
+
+.

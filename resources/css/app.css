@@ -11,6 +11,7 @@
 @import './components/button.css';
 @import './components/box.css';
 @import './components/table.css';
+@import './components/label.css';
 
 /* UTILITIES */
 @import './utilities/grid.css';
@@ -26,6 +27,9 @@
 
 /* LAYOUTS */
 @import './layouts/navbar.css';
+
+/* PAGES */
+@import './pages/bookDetail.css';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';

@@ -10,9 +10,18 @@ class CategoryController extends Controller
 {
     //
 
-    public function categories()
+    public function categories(Request $request)
     {
-        $categories = Category::latest()->get();
+        $search = $request->search;
+
+        $categories = Category::query();
+
+        if ($search) {
+            $categories->where('name', 'like', "%$search%");
+        }
+
+        $categories = $categories->latest()->get();
+
         return view('admin.categories.categories', compact('categories'));
     }
 

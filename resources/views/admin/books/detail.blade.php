@@ -1,28 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
+@section('title', 'LMS Book Form')
 
-<body>
-    {{ $book->title }}
-    @foreach ($book->categories as $category)
-        {{ $category->name . ', ' }}
-    @endforeach
-    {{ $book->author }}
-    {{ $book->publisher }}
-    {{ $book->year }}
-    {{ $book->stock }}
-    {{ $book->description }}
+@section('content')
+    <main>
+        <div class="flex justify-center p-6">
+            <div class="input-layer shadow-xs p-4">
+                <form action="" method="post">
 
-    <form action="{{route('user.addToCart', $book->id)}}">
-        @csrf
-        <button type="submit" class="btn-primary">Tambah</button>
-    </form>
-</body>
+                    <div class="text-xl text-bold text-center pt-3 pb-5">Tambah Buku</div>
 
-</html>
+                    <label for="title">Judul Buku</label>
+                    <input type="text" name="title" id="title" placeholder="Title" readonly value="{{$book->title}}">
+
+                    <label for="category">Kategori Buku</label>
+                    <table class="general-table">
+                        <tr>
+                            <th>Kategori</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                @foreach ($book->categories as $c)
+                                    {{ $c->name }},
+                                @endforeach
+                            </td>
+                        </tr>
+                    </table>
+
+                    <label for="author">Penulis</label>
+                    <input type="text" name="author" id="author" placeholder="Author" readonly value="{{$book->author}}">
+
+                    <label for="publisher">Penerbit</label>
+                    <input type="text" name="publisher" id="publisher" placeholder="Publisher" readonly value="{{$book->publisher}}">
+
+                    <label for="year">Tahun Terbit</label>
+                    <input type="text" name="year" id="year" placeholder="Year" readonly value="{{$book->year}}">
+
+                    <label for="stock">Stok</label>
+                    <input type="text" name="stock" id="stock" placeholder="Stock" readonly value="{{$book->stock}}">
+
+                    <label for="desc">Deskripsi</label>
+                    <textarea name="description" id="desc" cols="30" rows="8" placeholder="Description" readonly>{{$book->description}}</textarea>
+
+                    <a href="{{route('admin.editBook', $book->id)}}" class="btn-warning block text-center w-100 radius-sm"><i class="ri-pen-line"></i> Edit</a>
+                </form>
+            </div>
+        </div>
+    </main>
+
+@endsection

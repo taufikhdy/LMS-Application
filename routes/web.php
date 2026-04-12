@@ -32,7 +32,7 @@ Route::middleware(['auth', 'multirole:admin'])->group(function () {
 
 
     Route::controller(BookController::class)->group(function () {
-        Route::get('/book', 'books')->name('admin.books');
+        Route::get('/book/a', 'books')->name('admin.books');
         Route::get('/book/a/{id}/detail', 'detail')->name('admin.detailBook');
         Route::get('/book/form/add', 'addBook')->name('admin.addBook');
         Route::post('/book/form/post', 'store')->name('admin.storeBook');
@@ -61,6 +61,7 @@ Route::middleware(['auth', 'multirole:admin'])->group(function () {
 
     Route::controller(BorrowingController::class)->group(function () {
         Route::get('/a/borrows', 'adminBorrows')->name('admin.borrows');
+        Route::get('/a/borrows/{id}/detail', 'detail')->name('admin.borrowsDetail');
         Route::put('/a/borrows/{id}/confirm', 'confirm')->name('admin.borrowings.confirm');
         Route::put('/a/borrowed/{id}/returned', 'returnBook')->name('admin.borrowings.returned');
     });
@@ -71,6 +72,7 @@ Route::middleware(['auth', 'multirole:admin'])->group(function () {
 Route::middleware(['auth', 'multirole:user'])->group(function () {
     Route::controller(UserController::class)->group(function () {
         Route::get('/u/dashboard', 'dashboard')->name('user.dashboard');
+        Route::get('/book/u', 'books')->name('user.books');
 
         Route::get('/book/u/{id}/detail', 'bookDetail')->name('user.bookDetail');
         Route::get('/book/{id}/addToCart', 'addToCart')->name('user.addToCart');

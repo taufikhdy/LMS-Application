@@ -1,34 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <form action="{{route('admin.storeBook')}}" method="post">
-        @csrf
+@extends('layouts')
 
-        <input type="text" name="title" id="" placeholder="Title">
+@section('title', 'LMS Book Form')
 
-        <select name="categories[]" id="" multiple='multiple'>
-            @foreach ($categories as $category)
-                <option value="{{$category->id}}">{{$category->name}}</option>
-            @endforeach
-        </select>
+@section('content')
+    <main>
+        <div class="flex justify-center p-6">
+            <div class="input-layer shadow-xs p-4">
+                <form action="{{ route('admin.storeBook') }}" method="post">
+                    @csrf
 
-        <input type="text" name="author" id="" placeholder="Author">
+                    <div class="text-xl text-bold text-center pt-3 pb-5">Tambah Buku</div>
 
-        <input type="text" name="publisher" id="" placeholder="Publisher">
+                    <label for="title">Judul Buku</label>
+                    <input type="text" name="title" id="title" placeholder="Title">
 
-        <input type="text" name="year" id="" placeholder="Year">
+                    <label for="category">Kategori Buku</label>
+                    <select name="categories[]" id="category" multiple='multiple'>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
 
-        <input type="text" name="stock" id="" placeholder="Stock" value="0">
+                    <label for="author">Penulis</label>
+                    <input type="text" name="author" id="author" placeholder="Author">
 
-        <textarea name="description" id="" cols="30" rows="10" placeholder="Description"></textarea>
+                    <label for="publisher">Penerbit</label>
+                    <input type="text" name="publisher" id="publisher" placeholder="Publisher">
 
-        <input type="submit" value="Tambah">
-    </form>
-</body>
-</html>
+                    <label for="year">Tahun Terbit</label>
+                    <input type="text" name="year" id="year" placeholder="Year">
+
+                    <label for="stock">Stok</label>
+                    <input type="text" name="stock" id="stock" placeholder="Stock">
+
+                    <label for="desc">Deskripsi</label>
+                    <textarea name="description" id="desc" cols="30" rows="8" placeholder="Description"></textarea>
+
+                    <button type="submit" class="btn-primary w-100 radius-sm"><i class="ri-add-line"></i> Tambah</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+@endsection

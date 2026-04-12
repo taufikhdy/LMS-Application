@@ -40,7 +40,7 @@ class UserBorrowingController extends Controller
             $borrowing = Borrowing::create([
                 'user_id' => Auth::user()->id,
                 'borrow_date' => now(),
-                'due_date' => now(),
+                'due_date' => null,
                 'status' => 'pending'
             ]);
 

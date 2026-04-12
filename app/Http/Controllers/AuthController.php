@@ -11,7 +11,14 @@ class AuthController extends Controller
 
     public function showLogin()
     {
-        return view('auth.login');
+        $user = Auth::user();
+        if (!$user) {
+            return view('auth.login');
+        } elseif (Auth::user()->role->name === 'admin') {
+            return redirect()->route('admin.dashboard');
+        } else {
+            return redirect()->route('user.dashboard');
+        }
     }
 
     public function login(Request $request)
@@ -21,10 +28,10 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
-        if(Auth::attempt($credential)){
+        if (Auth::attempt($credential)) {
             $request->session()->regenerate();
 
-            return match(Auth::user()->role->name) {
+            return match (Auth::user()->role->name) {
                 'admin' => redirect()->route('admin.dashboard'),
                 'user' => redirect()->route('user.dashboard'),
                 default => redirect()->route('login')
@@ -34,7 +41,8 @@ class AuthController extends Controller
         return redirect()->route('login')->with('error', 'username atau password salah');
     }
 
-    public function logout(Request $request){
+    public function logout(Request $request)
+    {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

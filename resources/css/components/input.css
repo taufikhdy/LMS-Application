@@ -1,6 +1,7 @@
 input,
 select,
-option{
+option,
+textarea {
     border: none;
     outline: none;
     background: none;
@@ -8,8 +9,58 @@ option{
 
 .input-search,
 .select-search,
-.option-search{
+.option-search {
     padding: var(--space-2);
     background-color: var(--neutral-900);
     box-shadow: var(--shadow-xs);
+}
+
+.input-layer {
+    width: 50vw;
+    background-color: var(--neutral-900);
+}
+
+.input-layer label {
+    display: inline-block;
+    width: max-content;
+    font-size: var(--text-sm);
+    color: var(--neutral-400);
+    margin-bottom: var(--space-1);
+}
+
+.input-layer input,
+.input-layer textarea,
+.input-layer select {
+    display: block;
+    width: 100%;
+    border: 2px solid var(--neutral-800);
+    padding: var(--space-2);
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-3);
+}
+
+
+.input-layer input:focus:not:read-only,
+.input-layer textarea:focus:not:read-only {
+    border: 2px solid var(--color-primary);
+}
+
+.input-layer select[multiple] option {
+    display: inline-block;
+    width: max-content;
+    border: 2px solid var(--neutral-800);
+    padding: 4px;
+    border-radius: var(--radius-sm);
+    margin-right: 4px;
+}
+
+.input-layer select[multiple] option:checked {
+    background-color: var(--color-primary);
+    border: 2px solid var(--color-secondary);
+    color: var(--neutral-900);
+}
+
+.input-layer textarea {
+    width: 100%;
+    resize: none;
 }

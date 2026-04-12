@@ -4,33 +4,42 @@
 
 @section('content')
 
-    <h2>Riwayat Peminjaman</h2>
+    <div class="flex justify-center w-100">
 
-    @foreach ($borrowings as $b)
-        <p>Status: <strong>{{ $b->status }}</strong></p>
-        <p>Tanggal: {{ $b->borrow_date }}</p>
-        <p>Tanggal Kembali: {{$b->due_date}}</p>
-        <p>Denda: Rp {{ number_format($b->fine, 0, ',', '.') }}</p>
+        <div class="paper shadow-xs">
 
-        <ul>
-            @foreach ($b->details as $d)
-                <li>{{ $d->book->title }}</li>
+            @foreach ($borrowings as $b)
+                <div class="title text-bold">
+                    {{ $b->borrow_date }}
+                </div>
+
+                <div class="paper-item">
+
+                    <table class="general-table mb-3">
+                        @php
+                            $no = 1;
+                        @endphp
+                        @foreach ($b->details as $d)
+                            <tr>
+                                <td rowspan="2" class="text-center">{{ $no++ }}</td>
+                                <td class="bg-neutral-800">Judul</td>
+                                <td>{{ $d->book->title }}</td>
+                            </tr>
+                            <tr>
+                                <td>Tanggal Dikembalikan</td>
+                                <td>{{ $d->returned_at }}</td>
+                            </tr>
+                        @endforeach
+                    </table>
+                    @if ($b->due_date === null)
+                        <span class="text-bold">Pending</span>
+                    @else
+                        <span class="block text-bold color-warning">Jatuh Tempo {{ $b->due_date }}</span>
+                    @endif
+                    <span class="block">Denda Rp {{ number_format($b->fine, 0, ',', '.') }}</span>
+                </div>
             @endforeach
-        </ul>
-
-        {{-- <a href="{{ route('user.bookDetail', $b->book->id) }}" class="box-item">
-            <img src="" alt="" class="thumbnail">
-            <div class="info">
-                <div class="title">{{ $b->book->title }}</div>
-                <div class="author">{{ $b->book->author }}</div>
-                <div class="rating"></div>
-
-                <p>{{$b->status}} {{$b->borrow_date}}</p>
-
-            </div>
-        </a> --}}
-
         </div>
-    @endforeach
 
+    </div>
 @endsection

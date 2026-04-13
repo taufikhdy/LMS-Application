@@ -30,7 +30,7 @@ textarea {
 
 .input-layer input,
 .input-layer textarea,
-.input-layer select {
+.input-layer select{
     display: block;
     width: 100%;
     border: 2px solid var(--neutral-800);
@@ -41,9 +41,14 @@ textarea {
 
 
 .input-layer input:focus:not:read-only,
-.input-layer textarea:focus:not:read-only {
+.input-layer textarea:focus:not:read-only{
     border: 2px solid var(--color-primary);
 }
+
+.input-name:focus{
+    border-bottom: 2px solid var(--color-primary);
+}
+
 
 .input-layer select[multiple] option {
     display: inline-block;

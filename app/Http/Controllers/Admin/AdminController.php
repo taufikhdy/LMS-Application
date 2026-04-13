@@ -13,12 +13,13 @@ class AdminController extends Controller
     {
         $transaksi = Borrowing::count();
         $pending = Borrowing::where('status', 'pending')->count();
+        $book_total = Book::count();
 
         $books = Book::withCount('borrowDetails')
             ->orderBy('borrow_details_count', 'desc') //snake_case + _count
             ->limit(5)
             ->get();
 
-        return view('admin.dashboard', compact('books', 'transaksi', 'pending'));
+        return view('admin.dashboard', compact('book_total', 'books', 'transaksi', 'pending'));
     }
 }

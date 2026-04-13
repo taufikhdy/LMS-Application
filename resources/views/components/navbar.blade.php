@@ -5,6 +5,7 @@
             <div class="nav-link">
                 <a href="{{ route('admin.dashboard') }}" class="{{request()->is('dashboard*') ? 'active' : ''}}">Dashboard</a>
                 <a href="{{ route('admin.borrows') }}" class="{{request()->is('borrow*') ? 'active' : ''}}">Peminjaman</a>
+                <a href="{{ route('admin.fines') }}" class="{{request()->is('fines*') ? 'active' : ''}}">Denda</a>
                 <a href="{{ route('admin.books') }}" class="{{request()->is('book*') ? 'active' : ''}}">Buku</a>
                 <a href="{{ route('admin.categories') }}" class="{{request()->is('category*') ? 'active' : ''}}">Kategori</a>
                 <a href="{{ route('admin.users') }}" class="{{request()->is('user*') ? 'active' : ''}}">Pengguna</a>

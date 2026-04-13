@@ -27,7 +27,9 @@ class UsersController extends Controller
 
         $users = $users->with('role')->latest()->get();
 
-        return view('admin.users.users', compact('users'));
+        $total = User::count();
+
+        return view('admin.users.users', compact('users', 'total'));
     }
 
     public function addUser()

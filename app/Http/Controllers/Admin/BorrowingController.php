@@ -81,13 +81,13 @@ class BorrowingController extends Controller
     {
         $borrowing = Borrowing::with('details')->findOrFail($id);
 
-        $today = Carbon::now();
-        $due = Carbon::parse($borrowing->due_date);
+        $today = Carbon::now()->startOfDay();
+        $due = Carbon::parse($borrowing->due_date)->startOfDay();
         $fine = 0;
 
-        if ($today->gt($due)) {
-            $daysLate = $today->diffInDays($due);
-            $fine = $daysLate * 1000;
+        if ($today->greaterThan($due)) {
+            $daysLate = $due->diffInDays($today);
+            $fine = $daysLate * 4000;
         }
 
         foreach ($borrowing->details as $detail) {
@@ -111,6 +111,12 @@ class BorrowingController extends Controller
         // }
 
         return redirect()->route('admin.borrows')->with('success', 'Dikonfirmasi');
+    }
+
+    public function fines(){
+        $borrowing = Borrowing::with('user')->latest()->get();
+
+        return view('admin.fine.fine', compact('borrowing'));
     }
 
     public function delete($id)

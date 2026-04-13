@@ -16,16 +16,18 @@
     <div class="admin-layout">
         <div class="">
             <div class="admin-banner shadow-xs">
-                <div class="hello">Good Evening</div>
-                <div class="caption">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime modi molestiae
-                    dolor. Voluptate sed, culpa necessitatibus recusandae quo omnis praesentium magnam nisi? Cumque
-                    earum natus, quaerat voluptas atque aspernatur ipsum.</div>
+                <div class="hello">
+                    <span id="greeting"></span>
+                    <span>{{ Auth::user()->name }}</span>
+                </div>
+                <div class="caption">Kelola buku, peminjaman, dan data pengguna dalam satu sistem yang terorganisir.
+                </div>
             </div>
 
             <div class="admin-table shadow-xs">
                 <div class="menu-table">
                     <span class="table-title">Top Book</span>
-                    <a href="{{route('admin.books')}}" class="menu-link">View All</a>
+                    <a href="{{ route('admin.books') }}" class="menu-link">View All</a>
                 </div>
                 <table>
                     @php
@@ -34,9 +36,10 @@
                     @foreach ($books as $b)
                         <tr>
                             <td>0{{ $no++ }}</td>
-                            <td><img src="{{asset('storage/' . $b->image)}}" alt="" class="w-100"></td>
-                            <td><a href="{{route('admin.detailBook', $b->id)}}" class="color-secondary">{{$b->title}}</a></td>
-                            <td>{{$b->borrow_details_count}} Peminjaman</td>
+                            <td><img src="{{ asset('storage/' . $b->image) }}" alt="" class="w-100"></td>
+                            <td><a href="{{ route('admin.detailBook', $b->id) }}"
+                                    class="color-secondary">{{ $b->title }}</a></td>
+                            <td>{{ $b->borrow_details_count }} Peminjaman</td>
                             {{-- <td>rating count</td>
                             <td>rating value</td> --}}
                         </tr>
@@ -47,8 +50,9 @@
 
         <div class="">
             <div class="">
-                <div class="admin-list-box shadow-xs">Total Transaksi {{$transaksi}}</div>
-                <div class="admin-list-box shadow-xs">Permintaan Peminjaman {{$pending}}</div>
+                <div class="admin-list-box shadow-xs">Total Transaksi {{ $transaksi }}</div>
+                <div class="admin-list-box shadow-xs">Permintaan Peminjaman {{ $pending }}</div>
+                <div class="admin-list-box shadow-xs">Total {{ $book_total }} Buku</div>
             </div>
 
             {{-- <div class="">

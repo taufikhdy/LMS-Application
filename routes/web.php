@@ -65,6 +65,8 @@ Route::middleware(['auth', 'multirole:admin'])->group(function () {
         Route::put('/borrows/a/{id}/confirm', 'confirm')->name('admin.borrowings.confirm');
         // Route::put('/borrows/a/{id}/reject', 'reject')->name('admin.borrowings.reject');
         Route::put('/borrowed/a/{id}/returned', 'returnBook')->name('admin.borrowings.returned');
+
+        Route::get('/fines', 'fines')->name('admin.fines');
     });
 });
 

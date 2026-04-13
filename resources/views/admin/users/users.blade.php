@@ -7,7 +7,7 @@
     <main>
         <header>
             <div class="flex justify-between align-center w-100 mb-4">
-                <h1 class="text-xxl text-bold">Pengguna</h1>
+                <h1 class="text-xxl text-bold">Pengguna ({{$total}})</h1>
 
                 <div class="flex align-center gap-2">
                     <form action="{{ route('admin.users') }}" method="get">

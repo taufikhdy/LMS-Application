@@ -7,13 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="{{route('admin.updateCategory', $category->id)}}" method="post">
-        @csrf
-        @method('PUT')
-
-        <input type="text" name="name" id="" placeholder="Category Name" value="{{$category->name}}">
-
-        <input type="submit" value="Edit">
-    </form>
+    
 </body>
 </html>

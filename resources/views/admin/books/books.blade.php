@@ -36,6 +36,7 @@
                         <th>Penerbit</th>
                         <th>Tahun</th>
                         <th>Stok</th>
+                        <th>Dipinjam</th>
                         <th>Menu</th>
                     </tr>
 
@@ -57,6 +58,7 @@
                             <td>{{ $book->publisher }}</td>
                             <td>{{ $book->year }}</td>
                             <td>{{ $book->stock }}</td>
+                            <td>{{ $book->borrow_details_count }}</td>
                             <td>
                                 <div class="flex justify-center align-center gap-4">
                                     <a href="{{ route('admin.detailBook', $book->id) }}"><i

@@ -63,10 +63,11 @@ Route::middleware(['auth', 'multirole:admin'])->group(function () {
         Route::get('/borrows/a', 'adminBorrows')->name('admin.borrows');
         Route::get('/borrows/a/{id}/detail', 'detail')->name('admin.borrowsDetail');
         Route::put('/borrows/a/{id}/confirm', 'confirm')->name('admin.borrowings.confirm');
-        // Route::put('/borrows/a/{id}/reject', 'reject')->name('admin.borrowings.reject');
+        Route::put('/borrows/a/{id}/reject', 'reject')->name('admin.borrowings.reject');
         Route::put('/borrowed/a/{id}/returned', 'returnBook')->name('admin.borrowings.returned');
 
-        Route::get('/fines', 'fines')->name('admin.fines');
+        Route::get('/fines/a', 'fines')->name('admin.fines');
+        Route::post('/fines/a/finePay', 'finePay')->name('admin.finePay');
     });
 });
 
@@ -82,6 +83,8 @@ Route::middleware(['auth', 'multirole:user'])->group(function () {
 
         Route::get('/cart', 'cart')->name('user.cart');
         Route::delete('/cart/{id}/remove', 'removeCartItem')->name('user.cartRemove');
+
+        Route::get('/fines/u', 'fines')->name('user.fines');
     });
 
     Route::controller(UserBorrowingController::class)->group(function () {

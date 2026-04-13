@@ -3,22 +3,22 @@
     position: fixed;
     z-index: 99;
     top: 50%;
-    right: 16px;
+    left: 50%;
+    transform: translateY(-50%);
+    transform: translateX(-50%);
     padding: var(--space-3) var(--space-6);
-    border-radius: var(--radius-md);
-
+    width: max-content;
+    text-align: center;
     opacity: 1;
     transition: opacity 0.5s ease;
 }
 
 .error-message{
-    background-color: var(--error-200);
-    border: 2px solid var(--error-400);
+    background-color: var(--error-100);
 }
 
 .success-message{
-    background-color: var(--success-200);
-    border: 2px solid var(--success-400);
+    background-color: var(--success-100);
 }
 
 .alert-hide{

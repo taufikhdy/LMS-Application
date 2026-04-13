@@ -42,7 +42,7 @@
 
                             <div class="flex flex-between">
                                 <input type="text" name="name" class="input-name w-100" value="{{ $category->name }}"
-                                    disabled>
+                                    disabled required>
                                 <button type="submit" class="btn-submit hidden"><i
                                         class="ri-checkbox-circle-line text-lg color-success"></i></button>
                             </div>

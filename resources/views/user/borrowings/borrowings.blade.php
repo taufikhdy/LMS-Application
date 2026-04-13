@@ -35,12 +35,20 @@
                                     </tr>
                                 @endforeach
                             </table>
-                            @if ($b->due_date === null)
+                            @if ($b->status === 'pending' && $b->due_date === null)
                                 <span class="text-bold">Pending</span>
+                            @elseif ($b->status === 'rejected' && $b->due_date === null)
+                                <span class="color-error text-bold">Rejected</span>
                             @else
                                 <span class="block text-bold color-warning">Jatuh Tempo {{ $b->due_date }}</span>
                             @endif
-                            <span class="block">Denda Rp {{ number_format($b->fine, 0, ',', '.') }}</span>
+
+                            @if ($b->fine == 0)
+                                <span class="block text-bold color-success">Lunas</span>
+                            @else
+                                <span class="block">Denda <span class="color-error text-bold">Rp
+                                        {{ number_format($b->fine, 0, ',', '.') }}</span></span>
+                            @endif
                         </div>
                     @endforeach
                 </div>

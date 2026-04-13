@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Book;
 use App\Models\BorrowDetail;
 use App\Models\Borrowing;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -65,17 +66,17 @@ class BorrowingController extends Controller
         return back()->with('success', 'Dikonfirmasi');
     }
 
-    // public function reject($id)
-    // {
-    //     $borrowing = Borrowing::with('details')->findOrFail($id);
+    public function reject($id)
+    {
+        $borrowing = Borrowing::with('details')->findOrFail($id);
 
-    //     $borrowing->update([
-    //         'status' => 'borrowed',
-    //         'due_date' => Carbon::now()->addDays(7)
-    //     ]);
+        $borrowing->update([
+            'status' => 'rejected',
+            'due_date' => null
+        ]);
 
-    //     return back()->with('success', 'Dikonfirmasi');
-    // }
+        return back()->with('success', 'Dikonfirmasi');
+    }
 
     public function returnBook($id)
     {
@@ -85,10 +86,6 @@ class BorrowingController extends Controller
         $due = Carbon::parse($borrowing->due_date)->startOfDay();
         $fine = 0;
 
-        if ($today->greaterThan($due)) {
-            $daysLate = $due->diffInDays($today);
-            $fine = $daysLate * 4000;
-        }
 
         foreach ($borrowing->details as $detail) {
             $detail->update([
@@ -98,25 +95,54 @@ class BorrowingController extends Controller
             $detail->book->increment('stock');
         }
 
+        if ($today->greaterThan($due)) {
+            $daysLate = $due->diffInDays($today);
+            $fine = $daysLate * 4000;
+
+            $borrowing->update([
+                'status' => 'late',
+                'return_date' => now(),
+                'fine' => $fine
+            ]);
+        }
+
         $borrowing->update([
             'status' => 'returned',
             'return_date' => now(),
             'fine' => $fine
         ]);
 
-        // $details = BorrowDetail::where('borrow_id', $borrowing->id);
-
-        // foreach($details as $detail){
-        //     $detail->returned_at = 'now';
-        // }
-
         return redirect()->route('admin.borrows')->with('success', 'Dikonfirmasi');
     }
 
-    public function fines(){
-        $borrowing = Borrowing::with('user')->latest()->get();
+    public function fines()
+    {
+        $fines = User::withSum('borrowings', 'fine')->where('role_id', 2)->having('borrowings_sum_fine', '>', 0)->get();
 
-        return view('admin.fine.fine', compact('borrowing'));
+        return view('admin.fine.fine', compact('fines'));
+    }
+
+    public function finePay(Request $request)
+    {
+        $payValue = $request->payValue;
+        $user = User::findOrFail($request->user_id);
+
+        $borrowings = $user->borrowings()->where('fine', '>', 0)->get();
+
+        foreach ($borrowings as $b) {
+            if ($payValue <= 0) break;
+
+            if ($b->fine <= $payValue) {
+                $payValue -= $b->fine;
+                $b->update(['fine' => 0]);
+            } else {
+                $b->decrement('fine', $payValue);
+                $payValue = 0;
+            }
+        }
+
+        return redirect()->route('admin.fines')
+            ->with('success', 'Pembayaran untuk ' . $user->name . ' berhasil');
     }
 
     public function delete($id)

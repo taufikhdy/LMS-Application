@@ -9,8 +9,6 @@
         <header class="flex justify-center align-center w-100 min-vh-15">
 
             <form action="{{ route('admin.borrows') }}" method="get">
-                @csrf
-
                 <div class="flex justify-center align-center gap-4">
                     <div class="flex align-center w-100">
                         <input type="text" name="search" id="" placeholder="Cari" class="input-search w-100"
@@ -58,13 +56,13 @@
                                                         class="ri-check-line text-md text-bold"></i></button>
                                             </form>
 
-                                            {{-- <form action="{{ route('admin.borrowings.confirm', $b->id) }}" method="post">
+                                            <form action="{{ route('admin.borrowings.reject', $b->id) }}" method="post">
                                                 @csrf
                                                 @method('PUT')
 
                                                 <button type="submit" class="btn-error radius-sm pt-1 pb-1"><i
                                                         class="ri-close-line text-md text-bold"></i></button>
-                                            </form> --}}
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>

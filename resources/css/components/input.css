@@ -30,7 +30,7 @@ textarea {
 
 .input-layer input,
 .input-layer textarea,
-.input-layer select{
+.input-layer select {
     display: block;
     width: 100%;
     border: 2px solid var(--neutral-800);
@@ -39,13 +39,31 @@ textarea {
     margin-bottom: var(--space-3);
 }
 
-
 .input-layer input:focus:not:read-only,
-.input-layer textarea:focus:not:read-only{
+.input-layer textarea:focus:not:read-only {
     border: 2px solid var(--color-primary);
 }
 
-.input-name:focus{
+.input-basic {
+    display: block;
+    width: 100%;
+    border: 2px solid var(--neutral-800);
+    padding: var(--space-2);
+    border-radius: var(--radius-sm);
+}
+
+.input-basic:focus {
+    border: 2px solid var(--color-primary);
+
+}
+
+
+.input-name {
+    border-bottom: 2px solid var(--neutral-800);
+
+}
+
+.input-name:focus {
     border-bottom: 2px solid var(--color-primary);
 }
 

@@ -73,12 +73,11 @@
 .paper .title {
     display: block;
     width: 100%;
-    padding: var(--space-3);
-    font-size: var(--text-lg);
+    padding: var(--space-2);
+    font-size: var(--text-xl);
     text-align: center;
     background-color: var(--color-primary);
     color: var(--neutral-900);
-    border-radius: var(--radius-sm);
 }
 
 .paper-item ul {

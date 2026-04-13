@@ -8,6 +8,7 @@ use App\Models\Borrowing;
 use App\Models\Cart;
 use App\Models\CartItem;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -87,5 +88,11 @@ class UserController extends Controller
     {
         CartItem::findOrFail($book_id)->delete();
         return redirect()->back();
+    }
+
+    public function fines(){
+        $fines = User::withSum('borrowings', 'fine')->where('id', Auth::user()->id)->first();
+
+        return view('user.fine.fine', compact('fines'));
     }
 }

@@ -7,6 +7,7 @@ use App\Models\Book;
 use App\Models\BorrowDetail;
 use App\Models\Borrowing;
 use App\Models\CartItem;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -32,6 +33,8 @@ class UserBorrowingController extends Controller
 
         $books = $request->books ?? [];
 
+        $fines = User::withSum('borrowings', 'fine')->where('id', Auth::user()->id)->first();
+
         if (count($books) === 0) {
             return back()->with('error', 'Silahkan pilih minimal 1 buku');
         }
@@ -39,6 +42,10 @@ class UserBorrowingController extends Controller
         // max 3 buku
         elseif (count($books) > 3) {
             return back()->with('error', 'Maksimal 3 buku');
+        }
+
+        elseif($fines->borrowings_sum_fine > 0){
+            return back()->with('error', 'Silahkan bayar denda terlebih dahulu agar bisa meminjam buku');
         }
 
         DB::transaction(function () use ($request) {

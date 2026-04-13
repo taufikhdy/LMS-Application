@@ -21,20 +21,22 @@
         <div class="grid grid-col-6 gap-4 w-100">
             @foreach ($books as $book)
                 <div class="box-item shadow-xs">
-                    <a href="{{ route('user.bookDetail', $book->id) }}">
-                        <img src="" alt="" class="thumbnail">
-                        <div class="info">
-                            <div class="title">{{ $book->title }}</div>
-                            <div class="author">{{ $book->author }}</div>
-                            <div class="rating"></div>
-                        </div>
-                    </a>
-                    <form action="{{ route('user.addToCart', $book->id) }}">
-                        @csrf
-                        <div class="p-2">
-                            <button type="submit" class="btn-primary w-100">Tambah</button>
-                        </div>
-                    </form>
+                    <div class="flex flex-column">
+                        <a href="{{ route('user.bookDetail', $book->id) }}">
+                            <img src="{{ asset('storage/' . $book->image) }}" alt="" class="thumbnail">
+                            <div class="info">
+                                <div class="title">{{ $book->title }}</div>
+                                <div class="author">{{ $book->author }}</div>
+                                <div class="rating"></div>
+                            </div>
+                        </a>
+                        <form action="{{ route('user.addToCart', $book->id) }}" class="mt-auto">
+                            @csrf
+                            <div class="p-2">
+                                <button type="submit" class="btn-primary w-100">Tambah</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             @endforeach
         </div>

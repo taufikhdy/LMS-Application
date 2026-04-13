@@ -45,7 +45,7 @@
             @foreach ($books as $book)
                 <div class="box-item shadow-xs">
                     <a href="{{ route('user.bookDetail', $book->id) }}">
-                        <img src="" alt="" class="thumbnail">
+                        <img src="{{asset('storage/' . $book->image)}}" alt="" class="thumbnail">
                         <div class="info">
                             <div class="title">{{ $book->title }}</div>
                             <div class="author">{{ $book->author }}</div>

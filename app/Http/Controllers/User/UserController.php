@@ -80,7 +80,7 @@ class UserController extends Controller
             'book_id' => $book_id
         ]);
 
-        return redirect()->back()->with('success', 'success added to cart');
+        return redirect()->back()->with('success', 'Berhasil menambahkan buku ke dalam keranjang');
     }
 
     public function removeCartItem($book_id)

@@ -27,7 +27,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 
 Route::middleware(['auth', 'multirole:admin'])->group(function () {
     Route::controller(AdminController::class)->group(function () {
-        Route::get('/a/dashboard', 'dashboard')->name('admin.dashboard');
+        Route::get('/dashboard/a', 'dashboard')->name('admin.dashboard');
     });
 
 
@@ -60,10 +60,11 @@ Route::middleware(['auth', 'multirole:admin'])->group(function () {
     });
 
     Route::controller(BorrowingController::class)->group(function () {
-        Route::get('/a/borrows', 'adminBorrows')->name('admin.borrows');
-        Route::get('/a/borrows/{id}/detail', 'detail')->name('admin.borrowsDetail');
-        Route::put('/a/borrows/{id}/confirm', 'confirm')->name('admin.borrowings.confirm');
-        Route::put('/a/borrowed/{id}/returned', 'returnBook')->name('admin.borrowings.returned');
+        Route::get('/borrows/a', 'adminBorrows')->name('admin.borrows');
+        Route::get('/borrows/a/{id}/detail', 'detail')->name('admin.borrowsDetail');
+        Route::put('/borrows/a/{id}/confirm', 'confirm')->name('admin.borrowings.confirm');
+        // Route::put('/borrows/a/{id}/reject', 'reject')->name('admin.borrowings.reject');
+        Route::put('/borrowed/a/{id}/returned', 'returnBook')->name('admin.borrowings.returned');
     });
 });
 
@@ -71,7 +72,7 @@ Route::middleware(['auth', 'multirole:admin'])->group(function () {
 
 Route::middleware(['auth', 'multirole:user'])->group(function () {
     Route::controller(UserController::class)->group(function () {
-        Route::get('/u/dashboard', 'dashboard')->name('user.dashboard');
+        Route::get('/dashboard/u', 'dashboard')->name('user.dashboard');
         Route::get('/book/u', 'books')->name('user.books');
 
         Route::get('/book/u/{id}/detail', 'bookDetail')->name('user.bookDetail');
@@ -82,7 +83,7 @@ Route::middleware(['auth', 'multirole:user'])->group(function () {
     });
 
     Route::controller(UserBorrowingController::class)->group(function () {
-        Route::get('/u/borrows', 'borrows')->name('user.borrows');
+        Route::get('/borrows/u', 'borrows')->name('user.borrows');
         Route::post('/borrows/store', 'borrowStore')->name('user.borrowStore');
     });
 });

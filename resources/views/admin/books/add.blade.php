@@ -6,10 +6,13 @@
     <main>
         <div class="flex justify-center p-6">
             <div class="input-layer shadow-xs p-4">
-                <form action="{{ route('admin.storeBook') }}" method="post">
+                <form action="{{ route('admin.storeBook') }}" method="post" enctype="multipart/form-data">
                     @csrf
 
                     <div class="text-xl text-bold text-center pt-3 pb-5">Tambah Buku</div>
+
+                    <label for="image">Cover Buku</label>
+                    <input type="file" name="image">
 
                     <label for="title">Judul Buku</label>
                     <input type="text" name="title" id="title" placeholder="Title">

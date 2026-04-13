@@ -1,0 +1,26 @@
+.success-message,
+.error-message {
+    position: fixed;
+    z-index: 99;
+    top: 50%;
+    right: 16px;
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-md);
+
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.error-message{
+    background-color: var(--error-200);
+    border: 2px solid var(--error-400);
+}
+
+.success-message{
+    background-color: var(--success-200);
+    border: 2px solid var(--success-400);
+}
+
+.alert-hide{
+    opacity: 0;
+}

@@ -34,11 +34,11 @@
                     @foreach ($books as $b)
                         <tr>
                             <td>0{{ $no++ }}</td>
-                            <td><img src="" alt=""></td>
+                            <td><img src="{{asset('storage/' . $b->image)}}" alt="" class="w-100"></td>
                             <td><a href="{{route('admin.detailBook', $b->id)}}" class="color-secondary">{{$b->title}}</a></td>
-                            <td>borrowed 152</td>
-                            <td>rating count</td>
-                            <td>rating value</td>
+                            <td>{{$b->borrow_details_count}} Peminjaman</td>
+                            {{-- <td>rating count</td>
+                            <td>rating value</td> --}}
                         </tr>
                     @endforeach
                 </table>
@@ -47,14 +47,13 @@
 
         <div class="">
             <div class="">
-                <div class="admin-list-box shadow-xs">jumlah transaksi</div>
-                <div class="admin-list-box shadow-xs">permintaan pending pinjam</div>
-                <div class="admin-list-box shadow-xs">permintaan pending pengembalian</div>
+                <div class="admin-list-box shadow-xs">Total Transaksi {{$transaksi}}</div>
+                <div class="admin-list-box shadow-xs">Permintaan Peminjaman {{$pending}}</div>
             </div>
 
-            <div class="">
+            {{-- <div class="">
                 rating terbaru
-            </div>
+            </div> --}}
         </div>
     </div>
 </body>

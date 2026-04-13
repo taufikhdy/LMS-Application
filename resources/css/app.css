@@ -12,6 +12,7 @@
 @import './components/box.css';
 @import './components/table.css';
 @import './components/label.css';
+@import './components/message.css';
 
 /* UTILITIES */
 @import './utilities/grid.css';

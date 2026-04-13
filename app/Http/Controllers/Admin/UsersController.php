@@ -10,11 +10,23 @@ use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
-    //
 
-    public function users()
+    public function users(Request $request)
     {
-        $users = User::with('role')->latest()->get();
+        $search = $request->search;
+
+        $users = User::query();
+
+        if ($search) {
+            $users->where('name', 'like', "%$search%")
+                ->orWhere('email', 'like', "%$search%")
+                ->orWhereHas('role', function ($q) use ($search) {
+                    $q->where('name', 'LIKE', "%$search%");
+                });
+        }
+
+        $users = $users->with('role')->latest()->get();
+
         return view('admin.users.users', compact('users'));
     }
 

@@ -27,11 +27,17 @@ class UserBorrowingController extends Controller
     {
         // validasi
         $request->validate([
-            'books' => 'required|array'
+            'books' => 'array'
         ]);
 
+        $books = $request->books ?? [];
+
+        if (count($books) === 0) {
+            return back()->with('error', 'Silahkan pilih minimal 1 buku');
+        }
+
         // max 3 buku
-        if (count($request->books) > 3) {
+        elseif (count($books) > 3) {
             return back()->with('error', 'Maksimal 3 buku');
         }
 

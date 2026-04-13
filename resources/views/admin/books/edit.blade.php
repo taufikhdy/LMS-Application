@@ -12,6 +12,8 @@
 
                     <div class="text-xl text-bold text-center p-6">Edit Buku "{{ $book->title }}"</div>
 
+                    <label for="image">Cover Buku</label>
+                    <input type="file" name="image" value="{{$book->image}}">
 
                     <label for="title">Judul Buku</label>
                     <input type="text" name="title" id="" placeholder="Title" value="{{ $book->title }}">

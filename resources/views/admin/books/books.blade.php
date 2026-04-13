@@ -10,10 +10,13 @@
                 <h1 class="text-xxl text-bold">Buku</h1>
 
                 <div class="flex align-center gap-2">
-                    <div class="flex align-center w-100">
-                        <input type="text" name="search" id="" placeholder="Cari" class="input-search w-max">
-                        <button type="submit" class="btn-primary w-max">Cari</button>
-                    </div>
+                    <form action="{{ route('admin.books') }}" method="get">
+                        <div class="flex align-center w-100">
+                            <input type="text" name="search" id="" placeholder="Cari" class="input-search w-max"
+                                value="{{ request('search') }}">
+                            <button type="submit" class="btn-primary w-max">Cari</button>
+                        </div>
+                    </form>
 
                     <a href="{{ route('admin.addBook') }}" class="btn-primary radius-sm w-100"><i class="ri-add-fill"></i>
                         Tambah</a>
@@ -26,6 +29,7 @@
                 <table class="w-100 radius-md">
                     <tr>
                         <th>No</th>
+                        <th>Gambar</th>
                         <th>Judul</th>
                         <th>Kategori</th>
                         <th>Penulis</th>
@@ -42,6 +46,7 @@
                     @foreach ($books as $book)
                         <tr>
                             <td>{{ $no++ }}</td>
+                            <td><img src="{{asset('storage/' . $book->image)}}" alt="" class="w-20"></td>
                             <td>{{ $book->title }}</td>
                             <td>
                                 @foreach ($book->categories as $category)
@@ -54,7 +59,8 @@
                             <td>{{ $book->stock }}</td>
                             <td>
                                 <div class="flex justify-center align-center gap-4">
-                                    <a href="{{route('admin.detailBook', $book->id)}}"><i class="ri-eye-line text-lg color-primary"></i></a>
+                                    <a href="{{ route('admin.detailBook', $book->id) }}"><i
+                                            class="ri-eye-line text-lg color-primary"></i></a>
                                     <a href="{{ route('admin.editBook', $book->id) }}"><i
                                             class="ri-edit-line text-lg color-warning"></i></a>
                                     <form action="{{ route('admin.deleteBook', $book->id) }}" method="post">

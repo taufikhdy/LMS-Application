@@ -6,7 +6,8 @@
 
 .box-item {
     width: 100%;
-    height: 100%;
+    height: fit-content;
+    min-height: 300px;
     background-color: var(--neutral-900);
 }
 
@@ -19,6 +20,13 @@
     height: 160px;
 }
 
+.box-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
 .box-item .info {
     padding: 8px;
 }
@@ -26,6 +34,13 @@
 .box-item .info .title {
     font-size: var(--text-md);
     font-weight: bold;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    min-height: 50px;
 }
 
 .box-item .info .author {
@@ -37,7 +52,7 @@
     font-weight: bold;
 }
 
-.box-item input[type="checkbox"]{
+.box-item input[type="checkbox"] {
     transform: scale(1.2);
 }
 
@@ -71,7 +86,7 @@
     list-style-type: disc;
 }
 
-.paper-item ul li{
+.paper-item ul li {
     display: block;
     padding: var(--space-2);
     width: 100%;

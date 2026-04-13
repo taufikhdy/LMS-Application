@@ -9,11 +9,24 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-    //
 
-    public function books()
+    public function books(Request $request)
     {
-        $books = Book::with('categories')->latest()->get();
+        $search = $request->search;
+
+        $books = Book::query();
+
+        if ($search) {
+            $books->where('title', 'like', "%$search%")
+                ->orWhere('author', 'like', "%$search%")
+                ->orWhere('publisher', 'like', "%$search%")
+                ->orWhereHas('categories', function ($q) use ($search) {
+                    $q->where('name', 'LIKE', "%$search%");
+                });
+        }
+
+        $books = $books->with('categories')->latest()->get();
+
         return view('admin.books.books', compact('books'));
     }
 
@@ -37,7 +50,15 @@ class BookController extends Controller
             'categories.*' => 'exists:categories,id'
         ]);
 
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('books', 'public');
+        } else {
+            $path = null;
+        }
+
         $book = Book::create($validate);
+        $book->image = $path;
+        $book->save();
 
         $book->categories()->attach($validate['categories']);
         // $book->categories()->sync($request->category_id);

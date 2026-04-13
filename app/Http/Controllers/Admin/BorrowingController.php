@@ -65,6 +65,18 @@ class BorrowingController extends Controller
         return back()->with('success', 'Dikonfirmasi');
     }
 
+    // public function reject($id)
+    // {
+    //     $borrowing = Borrowing::with('details')->findOrFail($id);
+
+    //     $borrowing->update([
+    //         'status' => 'borrowed',
+    //         'due_date' => Carbon::now()->addDays(7)
+    //     ]);
+
+    //     return back()->with('success', 'Dikonfirmasi');
+    // }
+
     public function returnBook($id)
     {
         $borrowing = Borrowing::with('details')->findOrFail($id);
@@ -98,7 +110,7 @@ class BorrowingController extends Controller
         //     $detail->returned_at = 'now';
         // }
 
-        return redirect()->route('admin.borrows');
+        return redirect()->route('admin.borrows')->with('success', 'Dikonfirmasi');
     }
 
     public function delete($id)

@@ -1,6 +1,7 @@
 .grid{
     display: grid;
     justify-content: center;
+    align-items: stretch;
 }
 
 .grid-col-2{
@@ -8,9 +9,9 @@
 }
 
 .grid-col-6{
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(6, 1fr);
 }
 
 .grid-col-8{
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(8, 1fr);
 }

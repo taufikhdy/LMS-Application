@@ -30,13 +30,17 @@ input {
 }
 
 .login-box {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
     width: 100%;
     min-height: 100vh;
-    background: linear-gradient(to bottom left, var(--color-primary), var(--color-secondary));
+    background: linear-gradient(to bottom right, var(--color-primary), var(--color-secondary));
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     gap: 20px;
 }
 

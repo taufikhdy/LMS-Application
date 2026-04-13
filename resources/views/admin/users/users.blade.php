@@ -10,10 +10,13 @@
                 <h1 class="text-xxl text-bold">Pengguna</h1>
 
                 <div class="flex align-center gap-2">
-                    <div class="flex align-center w-100">
-                        <input type="text" name="search" id="" placeholder="Cari" class="input-search w-max">
-                        <button type="submit" class="btn-primary w-max">Cari</button>
-                    </div>
+                    <form action="{{ route('admin.users') }}" method="get">
+                        <div class="flex align-center w-100">
+                            <input type="text" name="search" id="" placeholder="Cari" class="input-search w-max"
+                                value="{{ request('search') }}">
+                            <button type="submit" class="btn-primary w-max">Cari</button>
+                        </div>
+                    </form>
 
                     <a href="{{ route('admin.addUser') }}" class="btn-primary radius-sm w-100"><i class="ri-add-fill"></i>
                         Tambah</a>

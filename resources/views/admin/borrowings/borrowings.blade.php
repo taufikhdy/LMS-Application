@@ -58,13 +58,13 @@
                                                         class="ri-check-line text-md text-bold"></i></button>
                                             </form>
 
-                                            <form action="{{ route('admin.borrowings.confirm', $b->id) }}" method="post">
+                                            {{-- <form action="{{ route('admin.borrowings.confirm', $b->id) }}" method="post">
                                                 @csrf
                                                 @method('PUT')
 
                                                 <button type="submit" class="btn-error radius-sm pt-1 pb-1"><i
                                                         class="ri-close-line text-md text-bold"></i></button>
-                                            </form>
+                                            </form> --}}
                                         </div>
                                     </td>
                                 </tr>

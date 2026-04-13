@@ -6,6 +6,10 @@
     height: max-content;
 }
 
+.h-fit{
+    height: fit-content;
+}
+
 .w-100 {
     width: 100%;
 }

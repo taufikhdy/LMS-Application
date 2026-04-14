@@ -7,7 +7,7 @@
     <main>
         <header class="flex justify-center align-center w-100 min-vh-15">
 
-            <form action="" method="get">
+            <form action="{{route('admin.fines')}}" method="get">
 
                 <div class="flex justify-center align-center gap-4">
                     <div class="flex align-center w-100">
@@ -23,7 +23,7 @@
         <section>
             <div class="pt-4 pb-6 grid grid-col-2 gap-4">
                 <div class="table-container-2 w-100 radius-md pt-3 pb-4 shadow-xs">
-                    <span class="text-md block mb-3 pl-4 pr-4 text-center text-bold color-500">Peminjaman</span>
+                    <span class="text-md block mb-3 pl-4 pr-4 text-center text-bold color-500">Denda Member</span>
                     <table class="w-100 radius-md">
                         @if ($fines->isEmpty())
                             <tr>

@@ -14,15 +14,17 @@
 
         <div class="book-detail">
             <div class="">
-                <img src="{{asset('storage/' . $book->image)}}" alt="" class="">
+                <img src="{{ asset('storage/' . $book->image) }}" alt="" class="">
             </div>
 
-            <div class="">
-                <span class="block text-xl text-bold">{{ $book->title }}</span>
-                <span class="block mt-1">Penulis : {{ $book->author }}</span>
-                <span class="block mt-1 text-bold">Stok : {{ $book->stock }}</span>
+            <div class="flex flex-column flex-between">
+                <div class="">
+                    <span class="block text-xl text-bold">{{ $book->title }}</span>
+                    <span class="block mt-1">Penulis : {{ $book->author }}</span>
+                    <span class="block mt-1 text-bold">Stok : {{ $book->stock }}</span>
 
-                <span class="block mt-3">{!! nl2br(e($book->description)) !!}</span>
+                    <span class="block mt-3">{!! nl2br(e($book->description)) !!}</span>
+                </div>
 
                 <div class="mt-3 text-right">
                     <form action="{{ route('user.addToCart', $book->id) }}">

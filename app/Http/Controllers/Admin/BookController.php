@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
@@ -25,7 +26,14 @@ class BookController extends Controller
                 });
         }
 
-        $books = $books->with('categories')->latest()->get();
+        // $books = $books->with('categories')->latest()->get();
+        $books = $books
+            ->with('categories')
+            ->withCount(['borrowDetails as borrowed_count' => function ($q) {
+                $q->whereHas('borrowing', function ($q2) {
+                    $q2->where('status', 'borrowed');
+                });
+            }])->latest()->get();
 
         return view('admin.books.books', compact('books'));
     }
@@ -83,10 +91,33 @@ class BookController extends Controller
     public function update(Request $request, $id)
     {
         $book = Book::findOrFail($id);
-        $book->update($request->all());
-        $book->categories()->sync($request->categories);
 
-        return redirect()->route('admin.books');
+        $validate = $request->validate([
+            'title' => 'required|string',
+            'author' => 'required|string',
+            'publisher' => 'required|string',
+            'year' => 'required|digits:4|integer|min:1900|max:' . date('Y'),
+            'stock' => 'required|integer|min:0',
+            'description' => 'nullable|string',
+            'categories' => 'required|array',
+            'categories.*' => 'exists:categories,id',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+        ]);
+
+        if ($request->hasFile('image')) {
+
+            if ($book->image && Storage::disk('public')->exists($book->image)) {
+                Storage::disk('public')->delete($book->image);
+            }
+
+            $validate['image'] = $request->file('image')->store('books', 'public');
+        }
+
+        $book->update($validate);
+
+        $book->categories()->sync($validate['categories']);
+
+        return redirect()->route('admin.books')->with('success', 'success update books');
     }
 
     public function delete($id)

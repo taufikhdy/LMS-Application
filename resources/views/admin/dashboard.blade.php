@@ -39,7 +39,7 @@
                             <td><img src="{{ asset('storage/' . $b->image) }}" alt="" class="w-100"></td>
                             <td><a href="{{ route('admin.detailBook', $b->id) }}"
                                     class="color-secondary">{{ $b->title }}</a></td>
-                            <td>{{ $b->borrow_details_count }} Peminjaman</td>
+                            <td>{{ $b->borrow_details_count }} x Dipinjam</td>
                             {{-- <td>rating count</td>
                             <td>rating value</td> --}}
                         </tr>

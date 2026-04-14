@@ -10,8 +10,10 @@
 
                     <div class="text-xl text-bold text-center pt-3 pb-5">Detail Buku</div>
 
-                    <label for="image">Cover Buku</label>
-                    <input type="file" name="image" value="{{$book->image}}">
+                    <label for="">Cover Saat Ini</label>
+                    <div class="flex justify-center w-100">
+                        <img src="{{ asset('storage/' . $book->image) }}" alt="" class="w-50 mb-4">
+                    </div>
 
                     <label for="title">Judul Buku</label>
                     <input type="text" name="title" id="title" placeholder="Title" readonly

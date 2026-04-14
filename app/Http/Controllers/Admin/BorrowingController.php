@@ -115,9 +115,17 @@ class BorrowingController extends Controller
         return redirect()->route('admin.borrows')->with('success', 'Dikonfirmasi');
     }
 
-    public function fines()
+    public function fines(Request $request)
     {
-        $fines = User::withSum('borrowings', 'fine')->where('role_id', 2)->having('borrowings_sum_fine', '>', 0)->get();
+        $search = $request->search;
+
+        $fines = User::query();
+
+        if ($search) {
+            $fines->where('name', 'like', "%$search%")
+                ->orWhere('email', 'like', "%$search%");
+        }
+        $fines = $fines->withSum('borrowings', 'fine')->where('role_id', 2)->having('borrowings_sum_fine', '>', 0)->get();
 
         return view('admin.fine.fine', compact('fines'));
     }

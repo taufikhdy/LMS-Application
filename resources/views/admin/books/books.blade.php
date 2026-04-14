@@ -47,7 +47,7 @@
                     @foreach ($books as $book)
                         <tr>
                             <td>{{ $no++ }}</td>
-                            <td><img src="{{asset('storage/' . $book->image)}}" alt="" class="w-20"></td>
+                            <td><img src="{{asset('storage/' . $book->image)}}" alt="" class="h-20"></td>
                             <td>{{ $book->title }}</td>
                             <td>
                                 @foreach ($book->categories as $category)
@@ -58,7 +58,7 @@
                             <td>{{ $book->publisher }}</td>
                             <td>{{ $book->year }}</td>
                             <td>{{ $book->stock }}</td>
-                            <td>{{ $book->borrow_details_count }}</td>
+                            <td>{{ $book->borrowed_count }}</td>
                             <td>
                                 <div class="flex justify-center align-center gap-4">
                                     <a href="{{ route('admin.detailBook', $book->id) }}"><i

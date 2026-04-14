@@ -30,7 +30,10 @@
     </div>
 
     <div class="profile">
-        <span class="name">{{ Auth::user()->name }}</span>
+        <div class="flex flex-column text-right">
+            <span class="name">{{ Auth::user()->name }}</span>
+            <span class="text-xs color-primary">{{Auth::user()->role->name}}</span>
+        </div>
         <form action="{{ route('logout') }}" method="post">
             @csrf
             <button type="submit" class="text-md" onclick="return confirm('Yakin ingin keluar dari akun ini')"><i
